@@ -16,7 +16,6 @@ UT EID 1: mwf634
 UT EID 2:
 """
 
-# TODO: Delete this import if you choose not to use it. Delete this comment when you are done.
 import sys
 
 
@@ -375,7 +374,6 @@ class Graph:
                     if self.vertices[j].depth <= self.vertices[i].depth:
                         self.vertices[j].depth = self.vertices[i].depth + 1
                         changed = True
-            
     def has_cycle(self):
         """
         Determine whether or not the graph has a cycle.
@@ -401,19 +399,17 @@ class Graph:
                     continue
 
                 if state[current] == 1:
-                    return True  
+                    return True
 
-                state[current] = 1  
-                stack.push((current, True))  
+                state[current] = 1
+                stack.push((current, True))
 
                 for neighbor in self.get_adjacent_vertices(current):
                     if state[neighbor] == 0:
                         stack.push((neighbor, False))
                     elif state[neighbor] == 1:
-                        return True  
+                        return True
         return False
-
-    
 
     def get_registration_plan(self):
         """
@@ -438,23 +434,20 @@ class Graph:
             available_now = []
             for idx, vertex in enumerate(self.vertices):
                 if not vertex.visited and vertex.depth == 0:
-                   available_now.append(idx)
-
+                    available_now.append(idx)
+            if not available_now:
+                break
             for idx in available_now[:4]:
                 semester.append(self.vertices[idx].label)
                 self.vertices[idx].visited = True
                 taken_courses += 1
-                
             for idx in available_now[:4]:
                 for neighbor in self.get_adjacent_vertices(idx):
-                    self.vertices[neighbor].depth -= 1
-                    
+                    self.vertices[neighbor].depth -= 1     
             courses.append(semester)
 
         return courses
 
-
-# TODO: Modify this function. You may delete this comment when you are done.
 def main():
     """
     The main function to retrieve a registration plan.
