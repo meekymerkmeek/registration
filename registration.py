@@ -370,7 +370,7 @@ class Graph:
         while changed:
             changed = False
             for idx, vertex in enumerate(self.vertices):
-                if vertex.depth != -1
+                if vertex.depth != -1:
                     continue
 
                 neighbors = self.get_adjacent_vertices(idx)
