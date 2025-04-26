@@ -445,6 +445,8 @@ class Graph:
                 for neighbor in self.get_adjacent_vertices(idx):
                     self.vertices[neighbor].depth -= 1     
             courses.append(semester)
+        if taken_courses != total_courses:
+            return []
 
         return courses
 
