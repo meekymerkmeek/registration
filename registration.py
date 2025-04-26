@@ -387,7 +387,7 @@ class Graph:
                         max_depth = -1
                         for neighbor in neighbors:
                             if self.vertices[neighbor].depth > max_depth:
-                                max_depth = self.vertices[neigbor].depth
+                                max_depth = self.vertices[neighbor].depth
                         vertex.depth = 1 + max_depth
                         changed = True
     def has_cycle(self):
