@@ -372,14 +372,15 @@ class Graph:
 
                 neighbors = self.get_adjacent_vertices(idx)
                 if neighbors:
+                    all_done = True
                     for neighbor in neighbors:
                         if self.vertices[neighbor].depth == -1:
+                            all_done = False
                             break
-                    else:
+                    if all_done:
                         max_depth = -1
                         for neighbor in neighbors:
-                            if self.vertices[neighbor].depth > max_depth:
-                                max_depth = self.vertices[neighbor].depth
+                            max_depth = max(max_depth, self.vertices[neighbor].depth)
                         vertex.depth = 1 + max_depth
                         changed = True
                 else:
