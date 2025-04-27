@@ -363,7 +363,6 @@ class Graph:
         """Computes depth for each vertex in the graph."""
         for vertex in self.vertices:
             vertex.depth = -1
-        
         changed = True
         while changed:
             changed = False
@@ -455,7 +454,7 @@ class Graph:
                 taken_courses += 1
             for idx in available_now[:4]:
                 for neighbor in self.get_adjacent_vertices(idx):
-                    self.vertices[neighbor].depth -= 1     
+                    self.vertices[neighbor].depth -= 1
             courses.append(semester)
         if taken_courses != total_courses:
             return []
