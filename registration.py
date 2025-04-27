@@ -361,10 +361,8 @@ class Graph:
 
     def compute_depth(self):
         """Computes depth for each vertex in the graph."""
-        n = len(self.vertices)
         for vertex in self.vertices:
             vertex.depth = -1
-
         
         changed = True
         while changed:
@@ -374,22 +372,20 @@ class Graph:
                     continue
 
                 neighbors = self.get_adjacent_vertices(idx)
-                if not neighbors:
-                    vertex.depth = 0
-                    changed = True
-                else:
-                    all_done = True
+                if neighbors:
                     for neighbor in neighbors:
                         if self.vertices[neighbor].depth == -1:
-                            all_done = False
                             break
-                    if all_done:
+                    else:
                         max_depth = -1
                         for neighbor in neighbors:
                             if self.vertices[neighbor].depth > max_depth:
                                 max_depth = self.vertices[neighbor].depth
                         vertex.depth = 1 + max_depth
                         changed = True
+                else:
+                    vertex.depth = 0
+                    changed = True
     def has_cycle(self):
         """
         Determine whether or not the graph has a cycle.
